@@ -135,17 +135,17 @@ return p.name+" x"+q;
 
 orders.unshift(order);
 localStorage.setItem("ztb-orders",JSON.stringify(orders));
+let msg =
+"🛒 जीरो AAAA बाज़ार\n" +
+"नया ऑर्डर\n\n" +
+"Order ID: " + order.id + "\n" +
+"नाम: " + name + "\n" +
+"मोबाइल: " + phone + "\n" +
+"पता: " + addr + "\n" +
+"सामान: " + items + "\n" +
+"कुल: ₹" + total + "\n" +
+"Payment: " + order.pay;
 
-let msg=
-"🛒 जीरो AAAA बाज़ार%0A"+
-"नया ऑर्डर%0A%0A"+
-"Order ID: "+order.id+"%0A"+
-"नाम: "+name+"%0A"+
-"मोबाइल: "+phone+"%0A"+
-"पता: "+addr+"%0A"+
-"सामान: "+items+"%0A"+
-"कुल: ₹"+total+"%0A"+
-"Payment: "+order.pay;
 
 cart={};
 save();
