@@ -109,7 +109,56 @@ function save(){localStorage.setItem("ztb-cart",JSON.stringify(cart));let n=Obje
 function openCart(){document.getElementById("cartModal").style.display="block";let items=Object.entries(cart).map(([id,q])=>({p:products.find(x=>x.id==id),q:+q})).filter(x=>x.p);if(!items.length){document.getElementById("cart").innerHTML='<div class="empty">कार्ट खाली है 🛒</div>';document.getElementById("total").textContent="";return}let total=items.reduce((s,x)=>s+x.p.price*x.q,0);document.getElementById("cart").innerHTML=items.map(x=>`<div class="row"><span>${x.p.emoji} <b>${x.p.name}</b><br><small>${x.q} × ₹${x.p.price}</small></span><span><b>₹${x.p.price*x.q}</b><br><button class="chip" onclick="changeQty(${x.p.id},-1)">−</button> <button class="chip" onclick="changeQty(${x.p.id},1)">+</button></span></div>`).join("");document.getElementById("total").textContent="कुल: ₹"+total}
 function checkoutModal(){if(!Object.keys(cart).length)return toast("पहले सामान कार्ट में डालें");closeModal("cartModal");document.getElementById("checkoutModal").style.display="block"}
 function selectPay(p){payMode=p;document.getElementById("cod").classList.toggle("selected",p==="cod");document.getElementById("online").classList.toggle("selected",p==="online")}
-function placeOrder(){let name=document.getElementById("custName").value.trim(),phone=document.getElementById("custPhone").value.trim(),addr=document.getElementById("custAddress").value.trim();if(!name||phone.length<10||!addr)return toast("नाम, मोबाइल और पता भरें");let total=Object.entries(cart).reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);let order={id:"ZT"+Date.now().toString().slice(-6),date:new Date().toLocaleString("hi-IN"),total,pay:payMode==="cod"?"COD":"Online",status:"ऑर्डर मिला"};orders.unshift(order);localStorage.setItem("ztb-orders",JSON.stringify(orders));cart={};save();closeModal("checkoutModal");showScreen("orders");renderOrders();toast("ऑर्डर सफलतापूर्वक प्लेस हो गया ✓")}
+function placeOrder(){
+let name=document.getElementById("custName").value.trim(),
+phone=document.getElementById("custPhone").value.trim(),
+addr=document.getElementById("custAddress").value.trim();
+
+if(!name||phone.length<10||!addr)
+return toast("नाम, मोबाइल और पता भरें");
+
+let total=Object.entries(cart).reduce((s,[id,q])=>
+s+products.find(p=>p.id==id).price*q,0);
+
+let order={
+id:"ZT"+Date.now().toString().slice(-6),
+date:new Date().toLocaleString("hi-IN"),
+total,
+pay:payMode==="cod"?"COD":"Online",
+status:"ऑर्डर मिला"
+};
+
+let items=Object.entries(cart).map(([id,q])=>{
+let p=products.find(x=>x.id==id);
+return p.name+" x"+q;
+}).join(", ");
+
+orders.unshift(order);
+localStorage.setItem("ztb-orders",JSON.stringify(orders));
+
+let msg=
+"🛒 जीरो AAAA बाज़ार%0A"+
+"नया ऑर्डर%0A%0A"+
+"Order ID: "+order.id+"%0A"+
+"नाम: "+name+"%0A"+
+"मोबाइल: "+phone+"%0A"+
+"पता: "+addr+"%0A"+
+"सामान: "+items+"%0A"+
+"कुल: ₹"+total+"%0A"+
+"Payment: "+order.pay;
+
+cart={};
+save();
+closeModal("checkoutModal");
+showScreen("orders");
+renderOrders();
+toast("ऑर्डर सफलतापूर्वक प्लेस हो गया ✓");
+
+window.open(
+"https://wa.me/919060488409?text="+encodeURIComponent(msg),
+"_blank"
+);
+}
 function renderOrders(){let el=document.getElementById("orders");el.innerHTML=orders.length?orders.map(o=>`<div class="order"><div style="display:flex;justify-content:space-between"><b>Order #${o.id}</b><span class="badge">${o.status}</span></div><p style="font-size:12px;color:#777">${o.date}</p><b>₹${o.total}</b> • ${o.pay}<p style="font-size:12px">🛵 डिलीवरी के लिए तैयार किया जा रहा है</p></div>`).join(""):'<div class="empty">अभी कोई ऑर्डर नहीं है 📦<br><button class="btn add" style="margin-top:12px;width:auto" onclick="showScreen(\'home\')">खरीदारी शुरू करें</button></div>'}
 function showScreen(s){document.getElementById("homeScreen").style.display=s==="home"?"block":"none";["orders","profile"].forEach(x=>document.getElementById(x+"Screen").classList.toggle("show",s===x));document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));document.getElementById(s==="home"?"navHome":s==="orders"?"navOrders":"navProfile")?.classList.add("active");if(s==="orders")renderOrders();scrollTo(0,0)}
 function closeModal(id){document.getElementById(id).style.display="none"}
