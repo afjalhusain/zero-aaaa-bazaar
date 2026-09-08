@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<title>जीरो टिकट बाज़ार — Triple A</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef1f0;font-family:Arial,system-ui,sans-serif;color:#17211f}
+button,input{font:inherit}.app{max-width:520px;margin:auto;min-height:100vh;background:#fff;padding-bottom:82px}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #eee;padding:10px 14px 12px}
+.top{display:flex;justify-content:space-between;align-items:center}.brand{font-size:20px;font-weight:900;color:#087f5b}.shop{font-size:11px;color:#777;margin-top:2px}
+.location{border:0;background:#f5f7f6;border-radius:10px;padding:8px 10px;font-size:12px}
+.search{margin-top:10px;background:#f2f5f4;border:1px solid #e6eae8;border-radius:12px;padding:10px 12px;display:flex;gap:8px}.search input{border:0;outline:0;background:transparent;width:100%}
+.hero{margin:14px;padding:18px;border-radius:18px;background:linear-gradient(135deg,#087f5b,#20a96f);color:white}.hero h1{margin:0 0 7px;font-size:24px}.hero p{margin:0 0 13px;font-size:13px;line-height:1.45}.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}.hero .btn{background:#fff;color:#087f5b}
+h2{font-size:18px;margin:18px 14px 10px}.cats{display:flex;gap:10px;overflow:auto;padding:0 14px 4px}.cat{min-width:88px;border:1px solid #e6ebe9;border-radius:14px;padding:9px;text-align:center;background:#fff;font-size:12px;cursor:pointer}.cat span{display:block;font-size:26px;margin-bottom:4px}
+.tools{display:flex;gap:8px;padding:0 14px 10px}.chip{border:1px solid #ddd;background:#fff;border-radius:18px;padding:7px 11px;font-size:12px}.chip.active{background:#087f5b;color:#fff;border-color:#087f5b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:0 14px}.card{border:1px solid #e7ebe9;border-radius:15px;padding:9px;background:#fff;position:relative}.pic{height:115px;border-radius:12px;background:#f4f8f6;display:grid;place-items:center;font-size:52px}.name{font-weight:800;margin-top:8px;font-size:14px}.unit{font-size:11px;color:#777;margin:3px 0}.price{font-weight:900;margin:7px 0}.old{font-size:10px;color:#999;text-decoration:line-through;margin-left:5px}.add{width:100%;background:#087f5b;color:#fff;padding:9px}.qty{display:flex;align-items:center;justify-content:space-between;border:1px solid #087f5b;border-radius:10px;overflow:hidden}.qty button{border:0;background:#eefaf5;color:#087f5b;width:32px;height:34px;font-weight:900}.qty b{font-size:13px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:520px;width:100%;height:70px;background:#fff;border-top:1px solid #ddd;display:flex;justify-content:space-around;align-items:center;z-index:30}.nav{border:0;background:none;font-size:10px;color:#666;min-width:55px}.nav b{display:block;font-size:21px;margin-bottom:2px}.nav.active{color:#087f5b}.bubble{position:absolute;margin:-8px 0 0 -5px;background:#e03131;color:#fff;border-radius:10px;font-size:9px;padding:2px 5px}
+.screen{display:none;min-height:calc(100vh - 70px);background:#fff}.screen.show{display:block}.screenHead{position:sticky;top:0;background:#fff;padding:16px 14px;border-bottom:1px solid #eee;z-index:10}.back{border:0;background:#f3f5f4;border-radius:9px;padding:8px 11px;margin-right:8px}
+.modal{display:none;position:fixed;inset:0;background:#0007;z-index:50}.sheet{position:absolute;bottom:0;left:50%;transform:translateX(-50%);max-width:520px;width:100%;background:#fff;border-radius:22px 22px 0 0;padding:17px;max-height:88vh;overflow:auto}.sheet h2{margin:0 0 12px}.row{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid #eee}.total{font-size:18px;font-weight:900;margin:15px 0}.checkout{width:100%;background:#087f5b;color:white}.empty{text-align:center;padding:35px;color:#777}.field{margin:10px 0}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:5px}.field input,.field textarea{width:100%;padding:11px;border:1px solid #ddd;border-radius:10px;outline:none}.pay{display:flex;gap:8px}.pay button{flex:1;border:1px solid #ddd;background:#fff;border-radius:10px;padding:10px}.pay .selected{border-color:#087f5b;background:#eefaf5;color:#087f5b}
+.profileBox{margin:14px;padding:18px;border:1px solid #e6ebe9;border-radius:16px}.menuItem{display:flex;justify-content:space-between;padding:15px 3px;border-bottom:1px solid #eee}.order{margin:12px 14px;padding:14px;border:1px solid #e6ebe9;border-radius:14px}.badge{display:inline-block;background:#e9f8f1;color:#087f5b;border-radius:15px;padding:5px 8px;font-size:10px;font-weight:800}
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:#17211f;color:white;padding:10px 15px;border-radius:10px;z-index:80;font-size:13px}
+@media(min-width:521px){body{background:#dfe8e5}.app{box-shadow:0 0 28px #0001}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="homeScreen">
+    <header>
+      <div class="top"><div><div class="brand">🛒 जीरो टिकट बाज़ार</div><div class="shop">Triple A • आपकी अपनी Grocery दुकान</div></div><button class="location" onclick="addressModal()">📍 पता</button></div>
+      <div class="search">🔎 <input id="search" placeholder="सामान खोजें..." oninput="renderProducts()"></div>
+    </header>
+    <section class="hero"><h1>घर का सामान, मिनटों में 🛍️</h1><p>आटा, चावल, दाल, तेल, मसाले और रोज़मर्रा का सामान आसानी से ऑर्डर करें।</p><button class="btn" onclick="document.getElementById('products').scrollIntoView()">अभी खरीदारी करें →</button></section>
+    <h2>श्रेणियाँ</h2>
+    <div class="cats" id="cats"></div>
+    <h2 id="products">लोकप्रिय सामान</h2>
+    <div class="tools"><button class="chip active" onclick="setSort('popular',this)">लोकप्रिय</button><button class="chip" onclick="setSort('low',this)">कम कीमत</button><button class="chip" onclick="setSort('high',this)">महंगी पहले</button></div>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div id="ordersScreen" class="screen">
+    <div class="screenHead"><h2 style="margin:0">📦 मेरे ऑर्डर</h2></div><div id="orders"></div>
+  </div>
+
+  <div id="profileScreen" class="screen">
+    <div class="screenHead"><h2 style="margin:0">👤 मेरा अकाउंट</h2></div>
+    <div class="profileBox"><b>Triple A ग्राहक</b><p style="font-size:12px;color:#777">अपना पता और ऑर्डर की जानकारी यहाँ देखें।</p>
+      <div class="menuItem">📍 डिलीवरी पता <button class="chip" onclick="addressModal()">बदलें</button></div>
+      <div class="menuItem">💳 पेमेंट <span>COD / Online</span></div>
+      <div class="menuItem">📞 सहायता <span>Contact Support</span></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <button class="nav active" id="navHome" onclick="showScreen('home')"><b>⌂</b>होम</button>
+    <button class="nav" id="navOrders" onclick="showScreen('orders')"><b>📦</b>ऑर्डर</button>
+    <button class="nav" onclick="openCart()"><b>🛒<i id="bubble" class="bubble" style="display:none">0</i></b>कार्ट</button>
+    <button class="nav" id="navProfile" onclick="showScreen('profile')"><b>👤</b>अकाउंट</button>
+  </div>
+</div>
+
+<div class="modal" id="cartModal" onclick="if(event.target.id==='cartModal')closeModal('cartModal')"><div class="sheet">
+<h2>🛒 आपका कार्ट</h2><div id="cart"></div><div class="total" id="total"></div><button class="btn checkout" onclick="checkoutModal()">आगे बढ़ें • Checkout</button>
+</div></div>
+
+<div class="modal" id="checkoutModal" onclick="if(event.target.id==='checkoutModal')closeModal('checkoutModal')"><div class="sheet">
+<h2>📍 डिलीवरी और पेमेंट</h2>
+<div class="field"><label>नाम</label><input id="custName" placeholder="आपका नाम"></div>
+<div class="field"><label>मोबाइल नंबर</label><input id="custPhone" placeholder="10 अंकों का मोबाइल नंबर" inputmode="numeric"></div>
+<div class="field"><label>पूरा पता</label><textarea id="custAddress" rows="3" placeholder="घर नंबर, गली, एरिया"></textarea></div>
+<div class="field"><label>पेमेंट तरीका</label><div class="pay"><button id="cod" class="selected" onclick="selectPay('cod')">💵 COD</button><button id="online" onclick="selectPay('online')">💳 Online</button></div></div>
+<button class="btn checkout" onclick="placeOrder()">ऑर्डर प्लेस करें ✓</button>
+</div></div>
+
+<div class="modal" id="addressModal" onclick="if(event.target.id==='addressModal')closeModal('addressModal')"><div class="sheet">
+<h2>📍 डिलीवरी पता</h2><div class="field"><label>आपका पता</label><textarea id="savedAddress" rows="4" placeholder="अपना डिलीवरी पता लिखें"></textarea></div><button class="btn checkout" onclick="saveAddress()">पता सेव करें</button>
+</div></div>
+
+<script>
+const products=[
+{id:1,name:"आशीर्वाद आटा",unit:"5 kg",price:285,old:310,cat:"आटा & चावल",emoji:"🌾",popular:10},
+{id:2,name:"बासमती चावल",unit:"5 kg",price:520,old:580,cat:"आटा & चावल",emoji:"🍚",popular:9},
+{id:3,name:"अरहर दाल",unit:"1 kg",price:165,old:190,cat:"दाल",emoji:"🥣",popular:10},
+{id:4,name:"सरसों तेल",unit:"1 L",price:145,old:160,cat:"तेल",emoji:"🫙",popular:9},
+{id:5,name:"हल्दी पाउडर",unit:"200 g",price:55,old:65,cat:"मसाले",emoji:"🌟",popular:8},
+{id:6,name:"चाय बिस्किट",unit:"500 g",price:75,old:90,cat:"बिस्किट",emoji:"🍪",popular:9},
+{id:7,name:"चीनी",unit:"1 kg",price:48,old:55,cat:"रोज़मर्रा",emoji:"🍚",popular:8},
+{id:8,name:"नमक",unit:"1 kg",price:25,old:30,cat:"रोज़मर्रा",emoji:"🧂",popular:8}
+];
+const categories=[["🌾","आटा & चावल"],["🥣","दाल"],["🫙","तेल"],["🌶️","मसाले"],["🍪","बिस्किट"],["🧺","रोज़मर्रा"]];
+let cart=JSON.parse(localStorage.getItem("ztb-cart")||"{}"), sortMode="popular", selectedCat="";
+let orders=JSON.parse(localStorage.getItem("ztb-orders")||"[]"), payMode="cod";
+
+function renderCats(){document.getElementById("cats").innerHTML=categories.map(c=>`<div class="cat" onclick="filterCat('${c[1]}')"><span>${c[0]}</span>${c[1]}</div>`).join("")}
+function filterCat(c){selectedCat=selectedCat===c?"":c;renderProducts();document.getElementById("products").scrollIntoView()}
+function setSort(s,el){sortMode=s;document.querySelectorAll(".chip").forEach(x=>x.classList.remove("active"));el.classList.add("active");renderProducts()}
+function renderProducts(){
+ let q=document.getElementById("search").value.toLowerCase();
+ let list=products.filter(p=>(!selectedCat||p.cat===selectedCat)&&p.name.toLowerCase().includes(q));
+ if(sortMode==="low")list.sort((a,b)=>a.price-b.price); if(sortMode==="high")list.sort((a,b)=>b.price-a.price); if(sortMode==="popular")list.sort((a,b)=>b.popular-a.popular);
+ document.getElementById("grid").innerHTML=list.length?list.map(p=>{
+  let q=cart[p.id]||0;
+  return `<div class="card"><div class="pic">${p.emoji}</div><div class="name">${p.name}</div><div class="unit">${p.unit}</div><div class="price">₹${p.price}<span class="old">₹${p.old}</span></div>${q?`<div class="qty"><button onclick="changeQty(${p.id},-1)">−</button><b>${q} कार्ट में</b><button onclick="changeQty(${p.id},1)">+</button></div>`:`<button class="btn add" onclick="changeQty(${p.id},1)">+ कार्ट में डालें</button>`}</div>`
+ }).join(""):'<div class="empty" style="grid-column:1/-1">कोई सामान नहीं मिला 🔎</div>';
+}
+function changeQty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderProducts();if(document.getElementById("cartModal").style.display==="block")openCart()}
+function save(){localStorage.setItem("ztb-cart",JSON.stringify(cart));let n=Object.values(cart).reduce((a,b)=>a+b,0);let b=document.getElementById("bubble");b.style.display=n?"inline":"none";b.textContent=n}
+function openCart(){document.getElementById("cartModal").style.display="block";let items=Object.entries(cart).map(([id,q])=>({p:products.find(x=>x.id==id),q:+q})).filter(x=>x.p);if(!items.length){document.getElementById("cart").innerHTML='<div class="empty">कार्ट खाली है 🛒</div>';document.getElementById("total").textContent="";return}let total=items.reduce((s,x)=>s+x.p.price*x.q,0);document.getElementById("cart").innerHTML=items.map(x=>`<div class="row"><span>${x.p.emoji} <b>${x.p.name}</b><br><small>${x.q} × ₹${x.p.price}</small></span><span><b>₹${x.p.price*x.q}</b><br><button class="chip" onclick="changeQty(${x.p.id},-1)">−</button> <button class="chip" onclick="changeQty(${x.p.id},1)">+</button></span></div>`).join("");document.getElementById("total").textContent="कुल: ₹"+total}
+function checkoutModal(){if(!Object.keys(cart).length)return toast("पहले सामान कार्ट में डालें");closeModal("cartModal");document.getElementById("checkoutModal").style.display="block"}
+function selectPay(p){payMode=p;document.getElementById("cod").classList.toggle("selected",p==="cod");document.getElementById("online").classList.toggle("selected",p==="online")}
+function placeOrder(){let name=document.getElementById("custName").value.trim(),phone=document.getElementById("custPhone").value.trim(),addr=document.getElementById("custAddress").value.trim();if(!name||phone.length<10||!addr)return toast("नाम, मोबाइल और पता भरें");let total=Object.entries(cart).reduce((s,[id,q])=>s+products.find(p=>p.id==id).price*q,0);let order={id:"ZT"+Date.now().toString().slice(-6),date:new Date().toLocaleString("hi-IN"),total,pay:payMode==="cod"?"COD":"Online",status:"ऑर्डर मिला"};orders.unshift(order);localStorage.setItem("ztb-orders",JSON.stringify(orders));cart={};save();closeModal("checkoutModal");showScreen("orders");renderOrders();toast("ऑर्डर सफलतापूर्वक प्लेस हो गया ✓")}
+function renderOrders(){let el=document.getElementById("orders");el.innerHTML=orders.length?orders.map(o=>`<div class="order"><div style="display:flex;justify-content:space-between"><b>Order #${o.id}</b><span class="badge">${o.status}</span></div><p style="font-size:12px;color:#777">${o.date}</p><b>₹${o.total}</b> • ${o.pay}<p style="font-size:12px">🛵 डिलीवरी के लिए तैयार किया जा रहा है</p></div>`).join(""):'<div class="empty">अभी कोई ऑर्डर नहीं है 📦<br><button class="btn add" style="margin-top:12px;width:auto" onclick="showScreen(\'home\')">खरीदारी शुरू करें</button></div>'}
+function showScreen(s){document.getElementById("homeScreen").style.display=s==="home"?"block":"none";["orders","profile"].forEach(x=>document.getElementById(x+"Screen").classList.toggle("show",s===x));document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));document.getElementById(s==="home"?"navHome":s==="orders"?"navOrders":"navProfile")?.classList.add("active");if(s==="orders")renderOrders();scrollTo(0,0)}
+function closeModal(id){document.getElementById(id).style.display="none"}
+function addressModal(){document.getElementById("savedAddress").value=localStorage.getItem("ztb-address")||"";document.getElementById("addressModal").style.display="block"}
+function saveAddress(){let a=document.getElementById("savedAddress").value.trim();if(!a)return toast("पता लिखें");localStorage.setItem("ztb-address",a);closeModal("addressModal");toast("पता सेव हो गया ✓")}
+function toast(t){let x=document.createElement("div");x.className="toast";x.textContent=t;document.body.appendChild(x);setTimeout(()=>x.remove(),1500)}
+renderCats();renderProducts();renderOrders();save();
+</script>
+</body>
+</html>
