@@ -5,539 +5,138 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b8f68">
 <title>जीरो ट्रिपल A बाज़ार</title>
-
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
- margin:0;
- font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif;
- background:#f5f7f6;
- color:#17201c
-}
+body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif;background:#f5f7f6;color:#17201c}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-
-.app{
- max-width:560px;
- margin:auto;
- min-height:100vh;
- background:#fff;
- padding-bottom:82px
-}
-
-header{
- position:sticky;
- top:0;
- z-index:20;
- background:#fff;
- border-bottom:1px solid #e8ecea
-}
-
-.top{
- display:flex;
- align-items:center;
- justify-content:space-between;
- padding:14px 16px 8px
-}
-
-.brand{
- display:flex;
- gap:10px;
- align-items:center
-}
-
+.app{max-width:560px;margin:auto;min-height:100vh;background:#fff;padding-bottom:82px}
+header{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid #e8ecea}
+.top{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 8px}
+.brand{display:flex;gap:10px;align-items:center}
 .logo{font-size:30px}
-
-.brand h1{
- font-size:20px;
- margin:0;
- color:#087d5d
-}
-
-.brand p{
- font-size:12px;
- color:#69736f;
- margin:2px 0 0
-}
-
-.iconbtn{
- border:0;
- background:#f1f5f3;
- border-radius:14px;
- padding:11px 13px
-}
-
-.search{
- margin:0 14px 12px;
- display:flex;
- gap:8px;
- background:#f2f5f4;
- border:1px solid #e1e7e4;
- border-radius:18px;
- padding:11px 13px
-}
-
-.search input{
- width:100%;
- border:0;
- outline:0;
- background:transparent;
- font-size:16px
-}
-
-.hero{
- margin:14px;
- padding:22px;
- border-radius:24px;
- background:linear-gradient(135deg,#087f5b,#20a875);
- color:#fff
-}
-
-.hero h2{
- margin:0 0 8px;
- font-size:25px
-}
-
-.hero p{
- margin:0 0 16px;
- line-height:1.5
-}
-
-.primary{
- background:#fff;
- color:#087d5d;
- border:0;
- border-radius:14px;
- padding:12px 18px;
- font-weight:800
-}
-
+.brand h1{font-size:20px;margin:0;color:#087d5d}
+.brand p{font-size:12px;color:#69736f;margin:2px 0 0}
+.iconbtn{border:0;background:#f1f5f3;border-radius:14px;padding:11px 13px}
+.search{margin:0 14px 12px;display:flex;gap:8px;background:#f2f5f4;border:1px solid #e1e7e4;border-radius:18px;padding:11px 13px}
+.search input{width:100%;border:0;outline:0;background:transparent;font-size:16px}
+.hero{margin:14px;padding:22px;border-radius:24px;background:linear-gradient(135deg,#087f5b,#20a875);color:#fff}
+.hero h2{margin:0 0 8px;font-size:25px}
+.hero p{margin:0 0 16px;line-height:1.5}
+.primary{background:#fff;color:#087d5d;border:0;border-radius:14px;padding:12px 18px;font-weight:800}
 .section{padding:0 14px}
-
-.section h2{
- font-size:21px;
- margin:20px 0 12px
-}
-
-.cats{
- display:flex;
- gap:10px;
- overflow:auto;
- padding-bottom:4px
-}
-
-.cat{
- min-width:105px;
- border:1px solid #e2e8e5;
- background:#fff;
- border-radius:18px;
- padding:12px 8px;
- text-align:center
-}
-
-.cat b{
- display:block;
- font-size:28px;
- margin-bottom:5px
-}
-
+.section h2{font-size:21px;margin:20px 0 12px}
+.cats{display:flex;gap:10px;overflow:auto;padding-bottom:4px}
+.cat{min-width:105px;border:1px solid #e2e8e5;background:#fff;border-radius:18px;padding:12px 8px;text-align:center}
+.cat b{display:block;font-size:28px;margin-bottom:5px}
 .cat span{font-size:13px}
-
-.tabs{
- display:flex;
- gap:8px;
- overflow:auto
-}
-
-.tab{
- border:1px solid #dfe6e2;
- background:#fff;
- border-radius:20px;
- padding:9px 14px
-}
-
-.tab.active{
- background:#087f5b;
- color:#fff;
- border-color:#087f5b
-}
-
-.grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px
-}
-
-.card{
- border:1px solid #e4e9e7;
- border-radius:20px;
- padding:10px;
- background:#fff;
- box-shadow:0 2px 8px #00000008
-}
-
-.pic{
- height:130px;
- border-radius:16px;
- background:#f1f6f4;
- display:flex;
- align-items:center;
- justify-content:center;
- font-size:58px
-}
-
-.card h3{
- font-size:15px;
- margin:9px 0 2px
-}
-
-.muted{
- font-size:12px;
- color:#727b78
-}
-
-.price{
- font-size:19px;
- font-weight:900;
- margin:5px 0
-}
-
-.old{
- text-decoration:line-through;
- color:#9aa19f;
- font-size:12px;
- font-weight:500;
- margin-left:5px
-}
-
-.add{
- width:100%;
- border:0;
- border-radius:12px;
- background:#087f5b;
- color:#fff;
- padding:10px;
- font-weight:800
-}
-
-.bottom{
- position:fixed;
- bottom:0;
- left:50%;
- transform:translateX(-50%);
- width:min(560px,100%);
- background:#fff;
- border-top:1px solid #e1e7e4;
- display:grid;
- grid-template-columns:repeat(4,1fr);
- z-index:30
-}
-
-.nav{
- border:0;
- background:#fff;
- padding:9px 4px 10px;
- color:#5e6864;
- font-size:11px
-}
-
-.nav span{
- display:block;
- font-size:23px
-}
-
-.nav.active{
- color:#087f5b;
- font-weight:800
-}
-
-.badge{
- position:absolute;
- background:#e53d3d;
- color:#fff;
- border-radius:99px;
- font-size:10px;
- padding:2px 6px;
- margin:-32px 0 0 16px
-}
-
-.screen{
- display:none;
- padding-bottom:20px
-}
-
+.tabs{display:flex;gap:8px;overflow:auto}
+.tab{border:1px solid #dfe6e2;background:#fff;border-radius:20px;padding:9px 14px}
+.tab.active{background:#087f5b;color:#fff;border-color:#087f5b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{border:1px solid #e4e9e7;border-radius:20px;padding:10px;background:#fff;box-shadow:0 2px 8px #00000008}
+.pic{height:130px;border-radius:16px;background:#f1f6f4;display:flex;align-items:center;justify-content:center;font-size:58px}
+.card h3{font-size:15px;margin:9px 0 2px}
+.muted{font-size:12px;color:#727b78}
+.price{font-size:19px;font-weight:900;margin:5px 0}
+.add{width:100%;border:0;border-radius:12px;background:#087f5b;color:#fff;padding:10px;font-weight:800}
+.add:disabled{background:#a9b7b1;cursor:not-allowed}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);background:#fff;border-top:1px solid #e1e7e4;display:grid;grid-template-columns:repeat(4,1fr);z-index:30}
+.nav{border:0;background:#fff;padding:9px 4px 10px;color:#5e6864;font-size:11px}
+.nav span{display:block;font-size:23px}
+.nav.active{color:#087f5b;font-weight:800}
+.badge{position:absolute;background:#e53d3d;color:#fff;border-radius:99px;font-size:10px;padding:2px 6px;margin:-32px 0 0 16px}
+.screen{display:none;padding-bottom:20px}
 .screen.active{display:block}
-
-.box{
- margin:14px;
- border:1px solid #e2e8e5;
- border-radius:18px;
- padding:14px
-}
-
-.row{
- display:flex;
- justify-content:space-between;
- gap:10px;
- align-items:center
-}
-
-.qty{
- display:flex;
- align-items:center;
- gap:8px
-}
-
-.qty button{
- width:32px;
- height:32px;
- border:1px solid #d9e1dd;
- background:#fff;
- border-radius:10px
-}
-
+.box{margin:14px;border:1px solid #e2e8e5;border-radius:18px;padding:14px}
+.row{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:32px;height:32px;border:1px solid #d9e1dd;background:#fff;border-radius:10px}
 .field{margin:10px 0}
-
-.field label{
- display:block;
- font-size:13px;
- font-weight:700;
- margin-bottom:5px
-}
-
-.field input,
-.field textarea,
-.field select{
- width:100%;
- padding:12px;
- border:1px solid #d7dfdb;
- border-radius:12px;
- outline:none;
- background:#fff
-}
-
-.full{
- width:100%;
- padding:13px;
- border:0;
- border-radius:13px;
- background:#087f5b;
- color:#fff;
- font-weight:800
-}
-
-.empty{
- text-align:center;
- padding:40px 15px;
- color:#68736e
-}
-
-.order{
- border:1px solid #e1e8e4;
- border-radius:16px;
- padding:13px;
- margin-bottom:10px
-}
-
-.status{
- display:inline-block;
- background:#e7f7ef;
- color:#087d5d;
- border-radius:20px;
- padding:5px 9px;
- font-size:12px;
- font-weight:800
-}
-
-.toast{
- position:fixed;
- left:50%;
- bottom:90px;
- transform:translateX(-50%);
- background:#17201c;
- color:#fff;
- padding:11px 15px;
- border-radius:12px;
- z-index:50;
- display:none;
- max-width:90%;
- text-align:center
-}
-
-.notice{
- font-size:12px;
- color:#68736e;
- line-height:1.5;
- background:#f6f9f7;
- border-radius:12px;
- padding:10px
-}
-
-@media(max-width:380px){
- .grid{gap:8px}
- .pic{height:112px}
-}
+.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+.field input,.field textarea,.field select{width:100%;padding:12px;border:1px solid #d7dfdb;border-radius:12px;outline:none;background:#fff}
+.full{width:100%;padding:13px;border:0;border-radius:13px;background:#087f5b;color:#fff;font-weight:800}
+.full:disabled{opacity:.6}
+.empty{text-align:center;padding:40px 15px;color:#68736e}
+.order{border:1px solid #e1e8e4;border-radius:16px;padding:13px;margin-bottom:10px}
+.status{display:inline-block;background:#e7f7ef;color:#087d5d;border-radius:20px;padding:5px 9px;font-size:12px;font-weight:800}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#17201c;color:#fff;padding:11px 15px;border-radius:12px;z-index:50;display:none;max-width:90%;text-align:center}
+.notice{font-size:12px;color:#68736e;line-height:1.5;background:#f6f9f7;border-radius:12px;padding:10px}
+.banner{margin:10px 14px;padding:9px 11px;border-radius:12px;font-size:12px;display:none}
+.banner.ok{display:block;background:#e9f8f0;color:#176b4e}
+.banner.warn{display:block;background:#fff4df;color:#8a5a00}
+.track{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0}
+.step{text-align:center;font-size:10px;color:#8a948f}
+.step i{display:block;width:24px;height:24px;border-radius:50%;background:#dfe7e3;margin:0 auto 4px;padding-top:3px;font-style:normal}
+.step.done{color:#087d5d;font-weight:700}
+.step.done i{background:#087f5b;color:#fff}
+@media(max-width:380px){.grid{gap:8px}.pic{height:112px}}
 </style>
 </head>
 
 <body>
-
 <div class="app">
 
 <header>
 <div class="top">
-
 <div class="brand">
 <div class="logo">🛒</div>
-
 <div>
 <h1>जीरो ट्रिपल A बाज़ार</h1>
 <p>Triple A • आपकी अपनी Grocery दुकान</p>
 </div>
-
 </div>
-
-<button class="iconbtn" onclick="showScreen('account')">
-📍<br><small>पता</small>
-</button>
-
+<button class="iconbtn" onclick="showScreen('account')">📍<br><small>पता</small></button>
 </div>
 
 <div class="search">
 🔎
-<input
-id="search"
-placeholder="सामान खोजें..."
-oninput="renderProducts()">
+<input id="search" placeholder="सामान खोजें..." oninput="renderProducts()">
 </div>
-
 </header>
 
+<div id="backendBanner" class="banner"></div>
 
 <main>
 
 <section id="home" class="screen active">
-
 <div class="hero">
-
 <h2>घर का सामान, मिनटों में 🛍️</h2>
-
-<p>
-आटा, चावल, दाल, तेल, मसाले और रोज़मर्रा का सामान आसानी से ऑर्डर करें।
-</p>
-
-<button
-class="primary"
-onclick="document.getElementById('products').scrollIntoView()">
-अभी खरीदारी करें →
-</button>
-
+<p>आटा, चावल, दाल, तेल, मसाले और रोज़मर्रा का सामान आसानी से ऑर्डर करें।</p>
+<button class="primary" onclick="document.getElementById('products').scrollIntoView()">अभी खरीदारी करें →</button>
 </div>
-
 
 <div class="section">
-
 <h2>श्रेणियाँ</h2>
-
-<div class="cats">
-
-<button class="cat" onclick="filterCat('सभी')">
-<b>🛍️</b>
-<span>सभी</span>
-</button>
-
-<button class="cat" onclick="filterCat('अनाज')">
-<b>🌾</b>
-<span>आटा & चावल</span>
-</button>
-
-<button class="cat" onclick="filterCat('दाल')">
-<b>🥣</b>
-<span>दाल</span>
-</button>
-
-<button class="cat" onclick="filterCat('तेल')">
-<b>🫙</b>
-<span>तेल</span>
-</button>
-
-<button class="cat" onclick="filterCat('मसाले')">
-<b>🌶️</b>
-<span>मसाले</span>
-</button>
-
+<div id="cats" class="cats"></div>
 </div>
-</div>
-
 
 <div class="section" id="products">
-
 <h2>लोकप्रिय सामान</h2>
-
 <div class="tabs">
-
-<button
-class="tab active"
-onclick="setTab(this,'लोकप्रिय')">
-लोकप्रिय
-</button>
-
-<button
-class="tab"
-onclick="setTab(this,'कम कीमत')">
-कम कीमत
-</button>
-
-<button
-class="tab"
-onclick="setTab(this,'प्रीमियम')">
-प्रीमियम
-</button>
-
+<button class="tab active" onclick="setTab(this,'लोकप्रिय')">लोकप्रिय</button>
+<button class="tab" onclick="setTab(this,'कम कीमत')">कम कीमत</button>
+<button class="tab" onclick="setTab(this,'प्रीमियम')">प्रीमियम</button>
 </div>
-
-<div
-id="productGrid"
-class="grid"
-style="margin-top:12px">
+<div id="productGrid" class="grid" style="margin-top:12px"></div>
 </div>
-
-</div>
-
 </section>
-
 
 <section id="cart" class="screen">
-
-<div class="section">
-<h2>🛒 मेरा कार्ट</h2>
-</div>
-
+<div class="section"><h2>🛒 मेरा कार्ट</h2></div>
 <div id="cartBox"></div>
-
 </section>
-
 
 <section id="orders" class="screen">
-
-<div class="section">
-<h2>📦 मेरे ऑर्डर</h2>
-</div>
-
+<div class="section"><h2>📦 मेरे ऑर्डर</h2></div>
 <div id="ordersBox" class="box"></div>
-
 </section>
 
-
 <section id="account" class="screen">
-
-<div class="section">
-<h2>👤 मेरा अकाउंट</h2>
-</div>
+<div class="section"><h2>👤 मेरा अकाउंट</h2></div>
 
 <div class="box">
-
 <div class="field">
 <label>नाम</label>
 <input id="custName" placeholder="अपना नाम">
@@ -545,7 +144,7 @@ style="margin-top:12px">
 
 <div class="field">
 <label>मोबाइल नंबर</label>
-<input id="custPhone" inputmode="tel" placeholder="10 अंकों का नंबर">
+<input id="custPhone" inputmode="tel" maxlength="10" placeholder="10 अंकों का नंबर">
 </div>
 
 <div class="field">
@@ -553,38 +152,19 @@ style="margin-top:12px">
 <textarea id="custAddress" rows="3" placeholder="घर नंबर, मोहल्ला, शहर"></textarea>
 </div>
 
-<button class="full" onclick="saveProfile()">
-जानकारी सेव करें
-</button>
-
+<button class="full" onclick="saveProfile()">जानकारी सेव करें</button>
 </div>
-
 
 <div class="box">
-
 <h3>🚚 डिलीवरी स्टेटस</h3>
-
-<p id="driverStatus">
-अभी कोई ड्राइवर असाइन नहीं है।
-</p>
-
-<div class="notice">
-ऑर्डर कन्फर्म होने के बाद इसी जगह ग्राहक को ड्राइवर की पुष्टि और डिलीवरी स्टेटस दिखाया जा सकता है।
+<div id="driverStatus">किसी ऑर्डर की जानकारी उपलब्ध नहीं है।</div>
 </div>
-
-</div>
-
 </section>
 
-
 <section id="checkout" class="screen">
-
-<div class="section">
-<h2>🧾 ऑर्डर पूरा करें</h2>
-</div>
+<div class="section"><h2>🧾 ऑर्डर पूरा करें</h2></div>
 
 <div class="box">
-
 <div id="checkoutSummary"></div>
 
 <div class="field">
@@ -594,7 +174,7 @@ style="margin-top:12px">
 
 <div class="field">
 <label>मोबाइल</label>
-<input id="coPhone" inputmode="tel" placeholder="मोबाइल नंबर">
+<input id="coPhone" inputmode="tel" maxlength="10" placeholder="10 अंकों का नंबर">
 </div>
 
 <div class="field">
@@ -603,903 +183,912 @@ style="margin-top:12px">
 </div>
 
 <div class="field">
-
 <label>भुगतान</label>
-
 <select id="payment">
-
-<option>
-Cash on Delivery (COD)
-</option>
-
-<option>
-Online Payment (Gateway जोड़ना बाकी)
-</option>
-
+<option value="COD">Cash on Delivery (COD)</option>
+<option value="ONLINE">💳 Online Payment (Razorpay)</option>
 </select>
-
 </div>
 
-<button class="full" onclick="placeOrder()">
+<div class="notice">
+💳 Online Payment Razorpay से होगा। भुगतान की पुष्टि server-side होगी।
+</div>
+
+<button id="placeBtn" class="full" style="margin-top:12px" onclick="placeOrder()">
 ऑर्डर कन्फर्म करें
 </button>
-
 </div>
-
 </section>
 
 </main>
 
-
 <nav class="bottom">
-
-<button
-class="nav active"
-onclick="showScreen('home',this)">
-<span>⌂</span>
-होम
+<button class="nav active" onclick="showScreen('home',this)">
+<span>⌂</span>होम
 </button>
 
-<button
-class="nav"
-onclick="showScreen('orders',this)">
-<span>📦</span>
-ऑर्डर
+<button class="nav" onclick="showScreen('orders',this)">
+<span>📦</span>ऑर्डर
 </button>
 
-<button
-class="nav"
-onclick="showScreen('cart',this)">
+<button class="nav" onclick="showScreen('cart',this)">
 <span>🛒</span>
 <i id="cartBadge" class="badge">0</i>
 कार्ट
 </button>
 
-<button
-class="nav"
-onclick="showScreen('account',this)">
-<span>👤</span>
-अकाउंट
+<button class="nav" onclick="showScreen('account',this)">
+<span>👤</span>अकाउंट
 </button>
-
 </nav>
 
-
 <div id="toast" class="toast"></div>
-
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
+const SUPABASE_URL='https://efxybjhxyohhfwsosygw.supabase.co';
 
-const products=[
+/*
+IMPORTANT:
+अपनी Supabase publishable key यहाँ लगानी होगी।
+*/
+const SUPABASE_KEY='YOUR_SUPABASE_PUBLISHABLE_KEY';
 
-{
-id:1,
-n:'आशीर्वाद आटा',
-cat:'अनाज',
-unit:'5 kg',
-p:285,
-old:310,
-e:'🌾',
-tag:'लोकप्रिय'
-},
+const sb=window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
-{
-id:2,
-n:'अरहर दाल',
-cat:'दाल',
-unit:'1 kg',
-p:165,
-old:190,
-e:'🥣',
-tag:'लोकप्रिय'
-},
-
-{
-id:3,
-n:'इंडियन बासमती चावल',
-cat:'अनाज',
-unit:'5 kg',
-p:420,
-old:470,
-e:'🍚',
-tag:'प्रीमियम'
-},
-
-{
-id:4,
-n:'सरसों तेल',
-cat:'तेल',
-unit:'1 L',
-p:145,
-old:165,
-e:'🫙',
-tag:'लोकप्रिय'
-},
-
-{
-id:5,
-n:'हल्दी पाउडर',
-cat:'मसाले',
-unit:'200 g',
-p:55,
-old:65,
-e:'🟡',
-tag:'कम कीमत'
-},
-
-{
-id:6,
-n:'लाल मिर्च पाउडर',
-cat:'मसाले',
-unit:'200 g',
-p:70,
-old:80,
-e:'🌶️',
-tag:'कम कीमत'
-},
-
-{
-id:7,
-n:'चना दाल',
-cat:'दाल',
-unit:'1 kg',
-p:95,
-old:110,
-e:'🥣',
-tag:'कम कीमत'
-},
-
-{
-id:8,
-n:'चीनी',
-cat:'अनाज',
-unit:'1 kg',
-p:48,
-old:55,
-e:'🍬',
-tag:'लोकप्रिय'
-},
-
-{
-id:9,
-n:'नमक',
-cat:'मसाले',
-unit:'1 kg',
-p:28,
-old:32,
-e:'🧂',
-tag:'कम कीमत'
-},
-
-{
-id:10,
-n:'रिफाइंड तेल',
-cat:'तेल',
-unit:'1 L',
-p:135,
-old:155,
-e:'🫙',
-tag:'लोकप्रिय'
-},
-
-{
-id:11,
-n:'बेसन',
-cat:'अनाज',
-unit:'500 g',
-p:62,
-old:72,
-e:'🌾',
-tag:'प्रीमियम'
-},
-
-{
-id:12,
-n:'गरम मसाला',
-cat:'मसाले',
-unit:'100 g',
-p:65,
-old:75,
-e:'🌶️',
-tag:'प्रीमियम'
-}
-
+const fallbackProducts=[
+{id:'f4fcb285-9e77-41fa-9475-6ca99a2770e1',name:'आटा',category:'आटा & चावल',price:45,unit:'1 kg',stock:100,emoji:'🌾',tag:'लोकप्रिय'},
+{id:'f01c1235-3daa-4e22-9fd9-22ecc6145e74',name:'चना दाल',category:'दाल',price:90,unit:'1 kg',stock:80,emoji:'🥣',tag:'कम कीमत'},
+{id:'30b79a4c-53c3-42a8-a2be-3e2e01cbec39',name:'चाय पत्ती',category:'पेय',price:110,unit:'250 g',stock:60,emoji:'🍵',tag:'प्रीमियम'},
+{id:'2ffba09a-9212-4022-9862-d51cf271ac14',name:'चीनी',category:'राशन',price:48,unit:'1 kg',stock:100,emoji:'🍬',tag:'कम कीमत'},
+{id:'2fc8fd28-dc3d-4eaf-a781-d0a2c7800a9a',name:'डिटर्जेंट',category:'होम केयर',price:95,unit:'1 kg',stock:70,emoji:'🧺',tag:'लोकप्रिय'},
+{id:'45b58e0b-85e2-490b-9054-19f6cbdaa098',name:'तूर दाल',category:'दाल',price:120,unit:'1 kg',stock:80,emoji:'🥣',tag:'प्रीमियम'},
+{id:'ba8e6ef2-d82d-44c7-9853-36cd0c4971b8',name:'नमक',category:'राशन',price:25,unit:'1 kg',stock:100,emoji:'🧂',tag:'कम कीमत'},
+{id:'cea538e6-f9ab-4162-bfb4-fd04d0efba6c',name:'बासमती चावल',category:'आटा & चावल',price:85,unit:'1 kg',stock:100,emoji:'🍚',tag:'प्रीमियम'},
+{id:'5d352958-90d5-40e5-83cb-dce7167d3716',name:'बिस्कुट',category:'स्नैक्स',price:30,unit:'पैक',stock:100,emoji:'🍪',tag:'कम कीमत'},
+{id:'a244308c-4305-41d6-97df-f1d0f9a9e404',name:'मसूर दाल',category:'दाल',price:95,unit:'1 kg',stock:80,emoji:'🥣',tag:'लोकप्रिय'},
+{id:'b8cabb21-2b3c-420f-9edb-d6ace9dec06a',name:'सरसों तेल',category:'तेल',price:145,unit:'1 L',stock:60,emoji:'🫙',tag:'लोकप्रिय'},
+{id:'65d3c5d0-2d27-4a07-afbf-77521f00995e',name:'साबुन',category:'पर्सनल केयर',price:35,unit:'पैक',stock:100,emoji:'🧼',tag:'कम कीमत'}
 ];
 
-
-let cart=JSON.parse(
-localStorage.getItem('za_cart')||'{}'
-);
-
+let products=[];
+let cart=JSON.parse(localStorage.getItem('za_cart')||'{}');
 let currentTab='लोकप्रिय';
 let currentCat='सभी';
-
-let orders=JSON.parse(
-localStorage.getItem('za_orders')||'[]'
-);
-
+let orders=JSON.parse(localStorage.getItem('za_orders')||'[]');
+let backendOK=false;
 
 function money(n){
-return '₹'+n;
+return '₹'+Number(n||0).toFixed(0);
 }
-
 
 function toast(t){
-
-let x=document.getElementById('toast');
-
+const x=document.getElementById('toast');
 x.textContent=t;
-
 x.style.display='block';
-
 clearTimeout(window.tt);
-
-window.tt=setTimeout(
-()=>x.style.display='none',
-1800
-);
-
+window.tt=setTimeout(()=>x.style.display='none',2200);
 }
 
-
-function save(){
-
-localStorage.setItem(
-'za_cart',
-JSON.stringify(cart)
-);
-
-localStorage.setItem(
-'za_orders',
-JSON.stringify(orders)
-);
-
+function saveCart(){
+localStorage.setItem('za_cart',JSON.stringify(cart));
 updateBadge();
-
 }
-
 
 function updateBadge(){
-
-let c=Object.values(cart).reduce(
-(a,b)=>a+b,
-0
-);
-
-document.getElementById(
-'cartBadge'
-).textContent=c;
-
+document.getElementById('cartBadge').textContent=
+Object.values(cart).reduce((a,b)=>a+b,0);
 }
 
+function saveLocalOrders(){
+localStorage.setItem('za_orders',JSON.stringify(orders));
+}
+
+function esc(s){
+return String(s??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#39;'
+}[m]));
+}
+
+function showBackendState(ok,msg){
+backendOK=ok;
+const b=document.getElementById('backendBanner');
+b.textContent=msg;
+b.className='banner '+(ok?'ok':'warn');
+}
+
+async function loadProducts(){
+try{
+const {data,error}=await sb
+.from('products')
+.select('id,name,category,price,unit,stock,image_url,is_active')
+.eq('is_active',true)
+.order('created_at',{ascending:true});
+
+if(error)throw error;
+
+products=(data||[]).map((p,i)=>({
+...p,
+price:Number(p.price),
+emoji:fallbackProducts[i%fallbackProducts.length]?.emoji||'🛍️',
+tag:['लोकप्रिय','कम कीमत','प्रीमियम'][i%3]
+}));
+
+if(!products.length)products=fallbackProducts;
+
+showBackendState(true,'✓ Database connected');
+}catch(e){
+products=fallbackProducts;
+showBackendState(false,'⚠️ Database policy अभी सेट नहीं है।');
+}
+
+renderCategories();
+renderProducts();
+renderCart();
+}
+
+function renderCategories(){
+const icons=['🛍️','🌾','🥣','🫙','🌶️','🍵','🧺','🧼'];
+const cats=[...new Set(products.map(p=>p.category).filter(Boolean))];
+
+document.getElementById('cats').innerHTML=
+`<button class="cat" onclick="filterCat('सभी')">
+<b>🛍️</b><span>सभी</span>
+</button>`+
+cats.map((c,i)=>
+`<button class="cat" onclick='filterCat(${JSON.stringify(c)})'>
+<b>${icons[(i+1)%icons.length]}</b>
+<span>${esc(c)}</span>
+</button>`
+).join('');
+}
 
 function filterCat(c){
-
 currentCat=c;
-
 showScreen('home');
-
 renderProducts();
-
 }
-
 
 function setTab(btn,t){
-
 currentTab=t;
-
 document.querySelectorAll('.tab')
 .forEach(x=>x.classList.remove('active'));
-
 btn.classList.add('active');
-
 renderProducts();
-
 }
-
 
 function renderProducts(){
-
-let q=(
-document.getElementById('search').value||''
-).toLowerCase();
+const q=(document.getElementById('search').value||'')
+.toLowerCase().trim();
 
 let arr=products.filter(x=>
-
-(currentCat==='सभी'||x.cat===currentCat)
-
-&&
-
+(currentCat==='सभी'||x.category===currentCat)&&
 (
-x.n.toLowerCase().includes(q)
-||
-x.cat.toLowerCase().includes(q)
-||
-x.unit.toLowerCase().includes(q)
-)
+(x.name||'').toLowerCase().includes(q)||
+(x.category||'').toLowerCase().includes(q)||
+(x.unit||'').toLowerCase().includes(q)
+));
 
-);
+if(currentTab!=='लोकप्रिय')
+arr=arr.filter(x=>x.tag===currentTab);
 
-if(currentTab!=='लोकप्रिय'){
+const g=document.getElementById('productGrid');
 
-arr=arr.filter(
-x=>x.tag===currentTab
-);
-
-}
-
-
-const g=document.getElementById(
-'productGrid'
-);
-
-
-g.innerHTML=arr.map(x=>`
-
-<article class="card">
-
-<div class="pic">
-${x.e}
-</div>
-
-<h3>${x.n}</h3>
-
-<div class="muted">
-${x.unit}
-</div>
-
-<div class="price">
-${money(x.p)}
-<span class="old">
-${money(x.old)}
-</span>
-</div>
-
-<button
-class="add"
-onclick="add(${x.id})">
-कार्ट में डालें
-</button>
-
-</article>
-
-`).join('')
-
-||
-
-'<div class="empty" style="grid-column:1/-1">सामान नहीं मिला।</div>';
-
-}
-
-
-function add(id){
-
-cart[id]=(cart[id]||0)+1;
-
-save();
-
-toast('सामान कार्ट में जोड़ दिया गया ✓');
-
-}
-
-
-function change(id,d){
-
-cart[id]=(cart[id]||0)+d;
-
-if(cart[id]<=0)
-delete cart[id];
-
-save();
-
-renderCart();
-
-}
-
-
-function renderCart(){
-
-let ids=Object.keys(cart);
-
-let box=document.getElementById(
-'cartBox'
-);
-
-
-if(!ids.length){
-
-box.innerHTML=`
-
-<div class="empty">
-
-🛒
-
-<h3>
-आपका कार्ट खाली है
-</h3>
-
-<p>
-पहले कुछ सामान कार्ट में डालें।
-</p>
-
-<button
-class="full"
-style="max-width:260px"
-onclick="showScreen('home')">
-
-खरीदारी शुरू करें
-
-</button>
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-let total=0;
-
-
-let rows=ids.map(id=>{
-
-let p=products.find(
-x=>x.id==id
-);
-
-let q=cart[id];
-
-let sum=p.p*q;
-
-total+=sum;
-
+g.innerHTML=arr.map(x=>{
+const stock=Number(x.stock??0);
 
 return `
-
-<div class="box">
-
-<div class="row">
-
-<div>
-
-<b>
-${p.e} ${p.n}
-</b>
-
-<div class="muted">
-${p.unit} • ${money(p.p)} प्रति
+<article class="card">
+<div class="pic">
+${x.image_url?
+`<img src="${esc(x.image_url)}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:16px">`
+:x.emoji}
 </div>
 
+<h3>${esc(x.name)}</h3>
+<div class="muted">${esc(x.unit||'')}</div>
+<div class="price">${money(x.price)}</div>
+
+<button class="add"
+${stock<=0?'disabled':''}
+onclick='add(${JSON.stringify(x.id)})'>
+${stock<=0?'स्टॉक खत्म':'कार्ट में डालें'}
+</button>
+</article>`;
+}).join('')||
+'<div class="empty" style="grid-column:1/-1">सामान नहीं मिला।</div>';
+}
+
+function add(id){
+cart[id]=(cart[id]||0)+1;
+saveCart();
+toast('सामान कार्ट में जोड़ दिया गया ✓');
+renderCart();
+}
+
+function change(id,d){
+cart[id]=(cart[id]||0)+d;
+if(cart[id]<=0)delete cart[id];
+saveCart();
+renderCart();
+}
+
+function cartTotal(){
+return Object.keys(cart).reduce((s,id)=>{
+const p=products.find(x=>String(x.id)===String(id));
+return s+(p?Number(p.price)*cart[id]:0);
+},0);
+}
+
+function renderCart(){
+const ids=Object.keys(cart);
+const box=document.getElementById('cartBox');
+
+if(!ids.length){
+box.innerHTML=`
+<div class="empty">
+🛒
+<h3>आपका कार्ट खाली है</h3>
+<p>पहले कुछ सामान कार्ट में डालें।</p>
+<button class="full" onclick="showScreen('home')">
+खरीदारी शुरू करें
+</button>
+</div>`;
+return;
+}
+
+let rows=ids.map(id=>{
+const p=products.find(x=>String(x.id)===String(id));
+if(!p)return '';
+
+const q=cart[id];
+const sum=Number(p.price)*q;
+
+return `
+<div class="box">
+<div class="row">
+<div>
+<b>${p.emoji} ${esc(p.name)}</b>
+<div class="muted">${esc(p.unit||'')} • ${money(p.price)} प्रति</div>
 </div>
 
 <div class="qty">
-
-<button
-onclick="change(${p.id},-1)">
-−
-</button>
-
-<b>
-${q}
-</b>
-
-<button
-onclick="change(${p.id},1)">
-+
-</button>
-
+<button onclick='change(${JSON.stringify(id)},-1)'>−</button>
+<b>${q}</b>
+<button onclick='change(${JSON.stringify(id)},1)'>+</button>
 </div>
-
 </div>
 
 <div style="text-align:right;margin-top:8px;font-weight:900">
 ${money(sum)}
 </div>
-
-</div>
-
-`;
-
+</div>`;
 }).join('');
 
-
-box.innerHTML=rows+`
-
+box.innerHTML=
+rows+
+`
 <div class="box">
-
 <div class="row">
-
 <b>कुल</b>
-
-<strong>
-${money(total)}
-</strong>
-
+<strong>${money(cartTotal())}</strong>
 </div>
 
-<button
-class="full"
-style="margin-top:12px"
-onclick="openCheckout()">
-
+<button class="full" style="margin-top:12px" onclick="openCheckout()">
 ऑर्डर करने जाएँ →
-
 </button>
-
-</div>
-
-`;
-
+</div>`;
 }
-
 
 function openCheckout(){
-
 if(!Object.keys(cart).length){
-
-toast(
-'पहले सामान कार्ट में डालें'
-);
-
+toast('पहले सामान कार्ट में डालें');
 return;
-
 }
-
 showScreen('checkout');
-
 renderCheckout();
-
 }
-
 
 function renderCheckout(){
-
-let total=0;
-
-
 let rows=Object.keys(cart).map(id=>{
-
-let p=products.find(
-x=>x.id==id
-);
-
-let q=cart[id];
-
-total+=p.p*q;
-
-
-return `
-
-<div class="row" style="margin:7px 0">
-
-<span>
-${p.n} × ${q}
-</span>
-
-<b>
-${money(p.p*q)}
-</b>
-
-</div>
-
-`;
-
+const p=products.find(x=>String(x.id)===String(id));
+return p?
+`<div class="row" style="margin:7px 0">
+<span>${esc(p.name)} × ${cart[id]}</span>
+<b>${money(Number(p.price)*cart[id])}</b>
+</div>`:'';
 }).join('');
 
+document.getElementById('checkoutSummary').innerHTML=
+rows+
+'<hr><div class="row"><b>कुल भुगतान</b><b>'+
+money(cartTotal())+
+'</b></div>';
 
-document.getElementById(
-'checkoutSummary'
-).innerHTML=rows+`
-
-<hr>
-
-<div class="row">
-
-<b>
-कुल भुगतान
-</b>
-
-<b>
-${money(total)}
-</b>
-
-</div>
-
-`;
-
-
-let prof=JSON.parse(
+const prof=JSON.parse(
 localStorage.getItem('za_profile')||'{}'
 );
 
-
-document.getElementById('coName').value=
-prof.name||'';
-
-document.getElementById('coPhone').value=
-prof.phone||'';
-
-document.getElementById('coAddress').value=
-prof.address||'';
-
+document.getElementById('coName').value=prof.name||'';
+document.getElementById('coPhone').value=prof.phone||'';
+document.getElementById('coAddress').value=prof.address||'';
 }
 
-
 function saveProfile(){
-
-let p={
-
-name:document.getElementById(
-'custName'
-).value.trim(),
-
-phone:document.getElementById(
-'custPhone'
-).value.trim(),
-
-address:document.getElementById(
-'custAddress'
-).value.trim()
-
+const p={
+name:document.getElementById('custName').value.trim(),
+phone:document.getElementById('custPhone').value.trim(),
+address:document.getElementById('custAddress').value.trim()
 };
 
+if(!p.name||!/^[6-9]\d{9}$/.test(p.phone)||!p.address){
+toast('सही नाम, 10 अंकों का मोबाइल और पता भरें');
+return;
+}
+
+localStorage.setItem('za_profile',JSON.stringify(p));
+toast('जानकारी सेव हो गई ✓');
+}
+
+async function getOrCreateCustomer(name,phone,address){
+let {data,error}=await sb
+.from('customers')
+.insert({name,phone,address})
+.select('id')
+.single();
+
+if(error)throw error;
+return data.id;
+}
+
+async function createBackendOrder(name,phone,address,pay,total){
+
+const customerId=
+await getOrCreateCustomer(name,phone,address);
+
+const {data:order,error:oe}=await sb
+.from('orders')
+.insert({
+customer_id:customerId,
+customer_name:name,
+customer_phone:phone,
+delivery_address:address,
+total_amount:total,
+payment_method:pay,
+payment_status:'PENDING',
+order_status:'PLACED'
+})
+.select('id,created_at,order_status')
+.single();
+
+if(oe)throw oe;
+
+const items=Object.keys(cart).map(id=>{
+const p=products.find(x=>String(x.id)===String(id));
+
+return {
+order_id:order.id,
+product_id:p.id,
+product_name:p.name,
+quantity:cart[id],
+unit_price:Number(p.price)
+};
+});
+
+const {error:ie}=await sb
+.from('order_items')
+.insert(items);
+
+if(ie)throw ie;
+
+return order;
+}
+
+async function createOnlinePayment(order,name,phone){
+
+const {data:sessionData}=await sb.auth.getSession();
+
+const token=
+sessionData?.session?.access_token||
+SUPABASE_KEY;
+
+const r=await fetch(
+SUPABASE_URL+'/functions/v1/razorpay-payment',
+{
+method:'POST',
+headers:{
+'Content-Type':'application/json',
+'Authorization':'Bearer '+token
+},
+body:JSON.stringify({
+action:'create_payment',
+order_id:order.id,
+amount:Number(order.total_amount),
+name,
+phone
+})
+}
+);
+
+const j=await r.json();
+
+if(!r.ok||!j.ok)
+throw new Error(j.error||'Payment gateway error');
+
+return j;
+}
+
+async function verifyOnlinePayment(
+orderId,
+razorpay_payment_id,
+razorpay_order_id,
+razorpay_signature
+){
+
+const {data:sessionData}=await sb.auth.getSession();
+
+const token=
+sessionData?.session?.access_token||
+SUPABASE_KEY;
+
+const r=await fetch(
+SUPABASE_URL+'/functions/v1/razorpay-payment',
+{
+method:'POST',
+headers:{
+'Content-Type':'application/json',
+'Authorization':'Bearer '+token
+},
+body:JSON.stringify({
+action:'verify_payment',
+order_id:orderId,
+razorpay_payment_id,
+razorpay_order_id,
+razorpay_signature
+})
+}
+);
+
+const j=await r.json();
+
+if(!r.ok||!j.ok)
+throw new Error(j.error||'Payment verification failed');
+
+return j;
+}
+
+async function placeOrder(){
+
+const name=document.getElementById('coName').value.trim();
+const phone=document.getElementById('coPhone').value.trim();
+const address=document.getElementById('coAddress').value.trim();
+const pay=document.getElementById('payment').value;
+
+if(!name||!/^[6-9]\d{9}$/.test(phone)||!address){
+toast('नाम, सही 10 अंकों का मोबाइल और पता भरें');
+return;
+}
+
+const btn=document.getElementById('placeBtn');
+
+btn.disabled=true;
+btn.textContent=
+pay==='ONLINE'?
+'Payment तैयार हो रहा है...':
+'ऑर्डर सेव हो रहा है...';
+
+const total=cartTotal();
+
+try{
+
+if(!backendOK)
+throw new Error('DATABASE_POLICY');
+
+const order=
+await createBackendOrder(
+name,phone,address,pay,total
+);
+
+if(pay==='ONLINE'){
+
+const payment=
+await createOnlinePayment(
+{id:order.id,total_amount:total},
+name,
+phone
+);
+
+const options={
+key:payment.key_id,
+amount:payment.amount,
+currency:'INR',
+name:'जीरो ट्रिपल A बाज़ार',
+description:'Grocery Order '+order.id,
+order_id:payment.razorpay_order_id,
+prefill:{
+name:name,
+contact:phone
+},
+handler:async function(resp){
+
+try{
+
+btn.textContent='Payment verify हो रहा है...';
+
+await verifyOnlinePayment(
+order.id,
+resp.razorpay_payment_id,
+resp.razorpay_order_id,
+resp.razorpay_signature
+);
+
+orders.unshift({
+id:order.id,
+name,
+phone,
+address,
+pay:'ONLINE',
+total,
+status:'भुगतान सफल',
+driver:'ड्राइवर असाइन होना बाकी',
+date:new Date().toLocaleString('hi-IN'),
+backend:true,
+order_status:'PLACED'
+});
+
+saveLocalOrders();
+
+cart={};
+saveCart();
 
 localStorage.setItem(
 'za_profile',
-JSON.stringify(p)
+JSON.stringify({name,phone,address})
 );
 
-toast(
-'जानकारी सेव हो गई ✓'
-);
+showScreen('orders');
+renderOrders();
+refreshMyOrders();
 
+toast('भुगतान सफल और ऑर्डर दर्ज ✓');
+
+}catch(e){
+
+console.error(e);
+toast('Payment verify नहीं हुआ।');
 }
 
+finally{
+btn.disabled=false;
+btn.textContent='ऑर्डर कन्फर्म करें';
+}
 
-function placeOrder(){
+},
 
-let name=
-document.getElementById(
-'coName'
-).value.trim();
+modal:{
+ondismiss:function(){
+btn.disabled=false;
+btn.textContent='ऑर्डर कन्फर्म करें';
+toast('Payment बंद कर दिया गया');
+}
+}
+};
 
-let phone=
-document.getElementById(
-'coPhone'
-).value.trim();
+if(!window.Razorpay)
+throw new Error('RAZORPAY_SCRIPT');
 
-let address=
-document.getElementById(
-'coAddress'
-).value.trim();
-
-let pay=
-document.getElementById(
-'payment'
-).value;
-
-
-if(!name||!phone||!address){
-
-toast(
-'नाम, मोबाइल और पता भरें'
-);
-
+new Razorpay(options).open();
 return;
-
 }
-
-
-let total=
-Object.keys(cart).reduce(
-(s,id)=>
-s+
-products.find(
-p=>p.id==id
-).p*
-cart[id],
-0
-);
-
-
-let id=
-'ZA'+
-Date.now()
-.toString()
-.slice(-7);
-
 
 orders.unshift({
-
-id,
+id:order.id,
 name,
 phone,
 address,
 pay,
 total,
-
 status:'ऑर्डर प्राप्त',
-
 driver:'ड्राइवर असाइन होना बाकी',
-
-date:new Date()
-.toLocaleString('hi-IN'),
-
-items:Object.keys(cart)
-.map(k=>({
-id:+k,
-q:cart[k]
-}))
-
+date:new Date().toLocaleString('hi-IN'),
+backend:true,
+order_status:'PLACED'
 });
 
+saveLocalOrders();
 
 cart={};
-
-save();
-
+saveCart();
 
 localStorage.setItem(
 'za_profile',
-JSON.stringify({
-name,
-phone,
-address
-})
+JSON.stringify({name,phone,address})
 );
-
 
 showScreen('orders');
-
 renderOrders();
+refreshMyOrders();
+
+toast('ऑर्डर सफलतापूर्वक दर्ज हो गया ✓');
+
+}catch(e){
+
+console.error(e);
 
 toast(
-'ऑर्डर सफलतापूर्वक दर्ज हो गया ✓'
+e.message==='DATABASE_POLICY'?
+'Supabase database policy अभी सेट नहीं है':
+e.message==='RAZORPAY_SCRIPT'?
+'Payment module लोड नहीं हुआ — page फिर खोलें':
+'ऑर्डर/पेमेंट शुरू नहीं हो सका'
 );
 
+btn.disabled=false;
+btn.textContent='ऑर्डर कन्फर्म करें';
+}
 }
 
+const statusMap={
+PLACED:[
+'ऑर्डर प्राप्त',
+'कन्फर्मेशन बाकी',
+'तैयार किया जा रहा है',
+'डिलीवरी'
+],
+CONFIRMED:[
+'ऑर्डर प्राप्त',
+'कन्फर्म',
+'तैयार किया जा रहा है',
+'डिलीवरी'
+],
+PROCESSING:[
+'ऑर्डर प्राप्त',
+'कन्फर्म',
+'तैयार किया जा रहा है',
+'डिलीवरी'
+],
+OUT_FOR_DELIVERY:[
+'ऑर्डर प्राप्त',
+'कन्फर्म',
+'तैयार',
+'डिलीवरी'
+],
+DELIVERED:[
+'ऑर्डर प्राप्त',
+'कन्फर्म',
+'तैयार',
+'डिलीवर'
+]
+};
+
+function trackHtml(status){
+
+const idx={
+PLACED:0,
+CONFIRMED:1,
+PROCESSING:2,
+OUT_FOR_DELIVERY:3,
+DELIVERED:3
+}[status]??0;
+
+const labels=statusMap[status]||statusMap.PLACED;
+
+return '<div class="track">'+
+labels.map((x,i)=>
+`<div class="step ${i<=idx?'done':''}">
+<i>${i<idx?'✓':i+1}</i>${x}
+</div>`
+).join('')+
+'</div>';
+}
 
 function renderOrders(){
 
-let b=document.getElementById(
-'ordersBox'
-);
-
+const b=document.getElementById('ordersBox');
 
 if(!orders.length){
-
-b.innerHTML=`
-
-<div class="empty">
-📦
-अभी कोई ऑर्डर नहीं है।
-</div>
-
-`;
-
+b.innerHTML=
+'<div class="empty">📦<br>अभी कोई ऑर्डर नहीं है।</div>';
 return;
-
 }
 
-
-b.innerHTML=orders.map(o=>`
-
+b.innerHTML=orders.map(o=>
+`
 <div class="order">
 
 <div class="row">
-
-<b>
-${o.id}
-</b>
-
+<b>${esc(o.id)}</b>
 <span class="status">
-${o.status}
+${esc(o.status||'ऑर्डर प्राप्त')}
 </span>
-
 </div>
 
 <p style="margin:8px 0 4px">
-
-<b>
-कुल: ${money(o.total)}
-</b>
-
+<b>कुल: ${money(o.total)}</b>
 </p>
 
 <div class="muted">
-${o.date}
+${esc(o.date||'')}
 </div>
+
+${o.backend?
+trackHtml(o.order_status||'PLACED'):''}
 
 <hr>
 
 <div>
-🚚 ${o.driver}
+🚚 ${esc(o.driver||'ड्राइवर असाइन होना बाकी')}
 </div>
 
-<div
-class="muted"
-style="margin-top:6px">
-
-${o.address}
-
+<div class="muted" style="margin-top:6px">
+${esc(o.address)}
 </div>
 
 </div>
-
-`).join('');
-
+`
+).join('');
 }
 
+async function refreshMyOrders(){
+
+const prof=
+JSON.parse(localStorage.getItem('za_profile')||'{}');
+
+if(!prof.phone)return;
+
+try{
+
+const {data,error}=await sb
+.from('orders')
+.select(
+'id,customer_name,customer_phone,delivery_address,total_amount,payment_method,payment_status,order_status,driver_id,created_at,updated_at'
+)
+.eq('customer_phone',prof.phone)
+.order('created_at',{ascending:false})
+.limit(20);
+
+if(error)throw error;
+
+orders=(data||[]).map(o=>({
+...o,
+id:o.id,
+name:o.customer_name,
+phone:o.customer_phone,
+address:o.delivery_address,
+total:Number(o.total_amount),
+pay:o.payment_method,
+status:
+o.order_status==='PLACED'?
+'ऑर्डर प्राप्त':
+o.order_status,
+driver:o.driver_id?
+'ड्राइवर असाइन है':
+'ड्राइवर असाइन होना बाकी',
+date:new Date(o.created_at).toLocaleString('hi-IN'),
+backend:true,
+order_status:o.order_status
+}));
+
+saveLocalOrders();
+renderOrders();
+renderDriverStatus();
+
+}catch(e){}
+}
+
+function renderDriverStatus(){
+
+const last=
+orders.find(o=>o.backend)||orders[0];
+
+const box=
+document.getElementById('driverStatus');
+
+if(!last){
+box.textContent=
+'किसी ऑर्डर की जानकारी उपलब्ध नहीं है।';
+return;
+}
+
+box.innerHTML=
+`
+<div>
+<b>${esc(last.id)}</b> —
+${esc(last.status||'ऑर्डर प्राप्त')}
+</div>
+
+<div style="margin-top:7px">
+🚚 ${esc(last.driver||'ड्राइवर असाइन होना बाकी')}
+</div>
+
+${last.backend?
+trackHtml(last.order_status||'PLACED'):''}
+`;
+}
+
+function loadProfile(){
+
+const p=
+JSON.parse(localStorage.getItem('za_profile')||'{}');
+
+document.getElementById('custName').value=p.name||'';
+document.getElementById('custPhone').value=p.phone||'';
+document.getElementById('custAddress').value=p.address||'';
+}
 
 function showScreen(id,btn){
 
-document
-.querySelectorAll('.screen')
-.forEach(
-s=>s.classList.remove('active')
-);
+document.querySelectorAll('.screen')
+.forEach(s=>s.classList.remove('active'));
 
-document
-.getElementById(id)
+document.getElementById(id)
 .classList.add('active');
-
 
 if(btn){
 
-document
-.querySelectorAll('.nav')
-.forEach(
-x=>x.classList.remove('active')
-);
+document.querySelectorAll('.nav')
+.forEach(x=>x.classList.remove('active'));
 
 btn.classList.add('active');
 
-}
+}else if(id==='home'){
 
-else if(id==='home'){
+document.querySelectorAll('.nav')
+.forEach(x=>x.classList.remove('active'));
 
-document
-.querySelectorAll('.nav')
-.forEach(
-x=>x.classList.remove('active')
-);
-
-document
-.querySelector('.nav')
+document.querySelector('.nav')
 .classList.add('active');
-
 }
 
+if(id==='cart')renderCart();
 
-if(id==='cart')
-renderCart();
-
-if(id==='orders')
+if(id==='orders'){
 renderOrders();
+refreshMyOrders();
+}
 
 if(id==='checkout')
 renderCheckout();
 
+if(id==='account'){
+loadProfile();
+refreshMyOrders();
+}
 
 window.scrollTo({
 top:0,
 behavior:'smooth'
 });
-
 }
 
+async function start(){
 
-renderProducts();
-
-renderOrders();
-
+loadProfile();
 updateBadge();
+renderOrders();
+renderDriverStatus();
 
+await loadProducts();
+
+refreshMyOrders();
+
+setInterval(
+refreshMyOrders,
+20000
+);
+}
+
+start();
 </script>
 
 </body>
