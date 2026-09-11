@@ -1,4 +1,86 @@
-<!doctype html>
+const products=[
+{id:1,name:"आलू",unit:"1 kg",price:32,old:40,cat:"सब्ज़ी",emoji:"🥔"},
+{id:2,name:"टमाटर",unit:"1 kg",price:38,old:45,cat:"सब्ज़ी",emoji:"🍅"},
+{id:3,name:"प्याज़",unit:"1 kg",price:35,old:42,cat:"सब्ज़ी",emoji:"🧅"},
+{id:4,name:"केला",unit:"1 दर्जन",price:55,old:65,cat:"फल",emoji:"🍌"},
+{id:5,name:"सेब",unit:"1 kg",price:120,old:150,cat:"फल",emoji:"🍎"},
+{id:6,name:"अमूल दूध",unit:"1 लीटर",price:66,old:70,cat:"डेयरी",emoji:"🥛"},
+{id:7,name:"ब्रेड",unit:"400 g",price:45,old:50,cat:"बेकरी",emoji:"🍞"},
+{id:8,name:"चावल",unit:"5 kg",price:330,old:370,cat:"राशन",emoji:"🍚"},
+{id:9,name:"आटा",unit:"5 kg",price:260,old:290,cat:"राशन",emoji:"🌾"},
+{id:10,name:"अरहर दाल",unit:"1 kg",price:145,old:165,cat:"राशन",emoji:"🫘"},
+{id:11,name:"चीनी",unit:"1 kg",price:48,old:55,cat:"राशन",emoji:"🧂"},
+{id:12,name:"सर्फ एक्सेल",unit:"1 kg",price:125,old:145,cat:"होम केयर",emoji:"🧺"},
+{id:13,name:"डिशवॉश",unit:"500 ml",price:85,old:99,cat:"होम केयर",emoji:"🧽"},
+{id:14,name:"टॉयलेट क्लीनर",unit:"500 ml",price:105,old:120,cat:"होम केयर",emoji:"🧴"},
+{id:15,name:"बिस्किट",unit:"200 g",price:30,old:35,cat:"स्नैक्स",emoji:"🍪"},
+{id:16,name:"नमकीन",unit:"200 g",price:45,old:55,cat:"स्नैक्स",emoji:"🥨"},
+{id:17,name:"कोल्ड ड्रिंक",unit:"750 ml",price:45,old:50,cat:"ड्रिंक्स",emoji:"🥤"},
+{id:18,name:"पानी",unit:"1 लीटर",price:20,old:20,cat:"ड्रिंक्स",emoji:"💧"},
+{id:19,name:"शैम्पू",unit:"180 ml",price:110,old:130,cat:"पर्सनल केयर",emoji:"🧴"},
+{id:20,name:"टूथपेस्ट",unit:"150 g",price:95,old:110,cat:"पर्सनल केयर",emoji:"🪥"},
+{id:21,name:"टिश्यू",unit:"1 पैक",price:70,old:85,cat:"होम केयर",emoji:"🧻"},
+{id:22,name:"डिटर्जेंट बार",unit:"250 g",price:28,old:32,cat:"होम केयर",emoji:"🧼"},
+{id:23,name:"चॉकलेट",unit:"1 पैक",price:60,old:70,cat:"स्नैक्स",emoji:"🍫"},
+{id:24,name:"आइसक्रीम",unit:"1 पैक",price:90,old:110,cat:"डेयरी",emoji:"🍦"}
+];
+const cats=[["सब्ज़ी","🥦"],["फल","🍎"],["डेयरी","🥛"],["राशन","🍚"],["स्नैक्स","🍪"],["होम केयर","🧴"],["पर्सनल केयर","🧴"],["ड्रिंक्स","🥤"]];
+let cart=JSON.parse(localStorage.getItem("za_cart")||"{}");
+let activeCat="सभी";
+const $=id=>document.getElementById(id);
+
+function save(){localStorage.setItem("za_cart",JSON.stringify(cart));updateCart()}
+function renderCats(){
+ $("categories").innerHTML='<button class="cat" onclick="filterCat(\'सभी\')"><div class="emoji">✨</div><small>सभी</small></button>'+cats.map(c=>`<button class="cat" onclick="filterCat('${c[0]}')"><div class="emoji">${c[1]}</div><small>${c[0]}</small></button>`).join("")
+}
+function renderProducts(){
+ const q=($("search").value||"").toLowerCase();
+ let list=products.filter(p=>(activeCat==="सभी"||p.cat===activeCat)&&(!q||p.name.toLowerCase().includes(q)||p.cat.toLowerCase().includes(q)));
+ $("resultCount").textContent=list.length+" आइटम";
+ $("products").innerHTML=list.length?list.map(p=>{
+   const n=cart[p.id]||0;
+   return `<article class="card"><div class="photo">${p.emoji}</div><div class="name">${p.name}</div><div class="unit">${p.unit}</div><div class="price">₹${p.price}<span class="old">₹${p.old}</span></div>${n?`<div class="qty"><button onclick="change(${p.id},-1)">−</button><b>${n}</b><button onclick="change(${p.id},1)">+</button></div>`:`<button class="add" onclick="change(${p.id},1)">ADD</button>`}</article>`
+ }).join(""):`<div class="empty" style="grid-column:1/-1">इस खोज में कोई सामान नहीं मिला।</div>`;
+}
+function filterCat(c){activeCat=c;$("productTitle").textContent=c==="सभी"?"लोकप्रिय सामान":c;renderProducts();scrollToProducts()}
+function change(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];save();renderProducts()}
+function updateCart(){
+ let ids=Object.keys(cart),count=ids.reduce((s,id)=>s+cart[id],0),total=ids.reduce((s,id)=>{let p=products.find(x=>x.id==id);return s+p.price*cart[id]},0);
+ $("cartItems").textContent=count;$("cartTotal").textContent="₹"+total;$("cartBar").style.display=count?"flex":"none"
+}
+function scrollToProducts(){$("productsSection").scrollIntoView({behavior:"smooth"})}
+function goHome(){window.scrollTo({top:0,behavior:"smooth"})}
+function closeModal(){$("modal").classList.add("hidden")}
+function openModal(html){$("modalContent").innerHTML=html;$("modal").classList.remove("hidden")}
+function openCart(){
+ let ids=Object.keys(cart), total=ids.reduce((s,id)=>s+products.find(p=>p.id==id).price*cart[id],0);
+ if(!ids.length)return;
+ openModal(`<h2>आपकी कार्ट</h2>${ids.map(id=>{let p=products.find(x=>x.id==id);return `<div class="row"><div class="mini">${p.emoji}</div><div class="grow"><b>${p.name}</b><small style="display:block;color:#77817c">${p.unit}</small></div><div><b>₹${p.price*cart[id]}</b><br><small>${cart[id]} × ₹${p.price}</small></div></div>`}).join("")}<h3 style="text-align:right">कुल: ₹${total}</h3><button class="checkout" onclick="checkout()">Checkout →</button>`)
+}
+function checkout(){
+ openModal(`<h2>ऑर्डर डिटेल</h2><input class="input" id="custName" placeholder="आपका नाम"><input class="input" id="custPhone" placeholder="मोबाइल नंबर" inputmode="tel"><textarea class="input" id="custAddress" rows="3" placeholder="पूरा डिलीवरी पता"></textarea><h3>पेमेंट</h3><div class="pay"><button onclick="selectPay(this)">💵 COD</button><button onclick="selectPay(this)">📱 Online / UPI</button></div><button class="checkout" onclick="placeOrder()">ऑर्डर प्लेस करें</button>`)
+}
+function selectPay(el){document.querySelectorAll(".pay button").forEach(b=>b.style.borderColor="#dce2de");el.style.borderColor="#00a86b"}
+function placeOrder(){
+ let name=$("custName").value.trim(),phone=$("custPhone").value.trim(),address=$("custAddress").value.trim();
+ if(!name||!phone||!address){alert("कृपया नाम, मोबाइल और पता भरें।");return}
+ let order={id:"ZA"+Date.now().toString().slice(-6),name,phone,address,items:{...cart},status:"ऑर्डर मिला",time:new Date().toLocaleString("hi-IN")};
+ let orders=JSON.parse(localStorage.getItem("za_orders")||"[]");orders.unshift(order);localStorage.setItem("za_orders",JSON.stringify(orders));cart={};save();
+ openModal(`<div class="empty"><div style="font-size:55px">✅</div><h2>ऑर्डर मिल गया!</h2><p>ऑर्डर नंबर <b>${order.id}</b></p><p>हम आपके ऑर्डर को तैयार करके जल्दी डिलीवर करेंगे।</p><button class="checkout" onclick="openOrders()">ऑर्डर ट्रैक करें</button></div>`)
+}
+function openOrders(){
+ let orders=JSON.parse(localStorage.getItem("za_orders")||"[]");
+ openModal(`<h2>मेरे ऑर्डर</h2>${orders.length?orders.map(o=>`<div class="row"><div class="mini">📦</div><div class="grow"><b>${o.id}</b><small style="display:block">${o.time}</small><small style="display:block;color:#008d5b">${o.status}</small></div><b>Track</b></div>`).join(""):`<div class="empty">अभी कोई ऑर्डर नहीं है।</div>`)
+}
+function openAccount(){
+ openModal(`<h2>मेरा अकाउंट</h2><input class="input" placeholder="मोबाइल नंबर" inputmode="tel"><button class="checkout" onclick="alert('OTP सिस्टम आपके पेमेंट/SMS provider से जोड़ना बाकी है।')">OTP से लॉगिन</button><p style="color:#77817c;font-size:12px;margin-top:14px">डेमो में कार्ट और ऑर्डर इसी फोन के ब्राउज़र में सेव रहते हैं।</p>`)
+}
+function setAddress(){
+ let a=prompt("अपना डिलीवरी पता लिखें:",localStorage.getItem("za_address")||"");
+ if(a){localStorage.setItem("za_address",a);$("address").textContent=a}
+}
+function init(){renderCats();renderProducts();updateCart();$("address").textContent=localStorage.getItem("za_address")||"अपना पता चुनें"}
+init();!doctype html>
 <html lang="hi">
 <head>
 <meta charset="utf-8">
